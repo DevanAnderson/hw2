@@ -19,12 +19,12 @@ void MyDataStore::addProduct(Product* p) {
         //see if the string is in the map
         map<string, set<Product*>>:: iterator it2 = keywords_.find(*it);
 
-        //if it is already in the map, add it to the set
+        //if the word is already in the map, add product to the set
         if(it2 != keywords_.end()){
             it2->second.insert(p);
         }
         else{
-            //if it is not in the map, add it to the map
+            //if word is not in the map, add it to the map
             set<Product*> prod;
             prod.insert(p);
             keywords_.insert({*it, prod});
@@ -39,45 +39,44 @@ void MyDataStore::addUser(User* u) {
 }
 
 vector<Product*> MyDataStore::search(vector<string>& terms, int type) {
-    
-    set<Product*> result;
-    
+    set<Product*> temp;
+    set<Product*> temp2;
+    vector<Product*> result;
+
+    for(vector<string>::iterator it = terms.begin(); it != terms.end(); ++it){
+        map<string, set<Product*>>::iterator it2 = keywords_.find(*it);
+        if(it2 != keywords_.end()){
+            temp2 = it2->second;
+            break;
+        }
+    }
 
     //union
     if(type){
-        
+        for(vector<string>::iterator it = terms.begin(); it != terms.end(); ++it){
+            map<string, set<Product*>>::iterator it2 = keywords_.find(*it);
+            if(it2 != keywords_.end()){
+                temp2 = it2->second;
+                temp = setUnion(temp, temp2);
+            }
+        }
     }
     //intersection
     else{
-
+        for(vector<string>::iterator it = terms.begin(); it != terms.end(); ++it){
+            map<string, set<Product*>>::iterator it2 = keywords_.find(*it);
+            if(it2 != keywords_.end()){
+                temp2 = it2->second;
+                temp = setIntersection(temp, temp2);
+            }
+        }
     }
 
 
-
-
-
-
-    // //union
-    // if(type){
-    //     for(vector<string>::iterator it = terms.begin(); it != terms.end(); ++it){
-    //         map<string, set<Product*>>::iterator it2 = keywords_.find(*it);
-
-    //         if(it2 != keywords_.end()){
-    //             temp = setUnion(temp, it2->second);
-    //         }
-    //     }
-    // }
-    // //intersect
-    // else{
-    //     for(vector<string>::iterator it = terms.begin(); it != terms.end(); ++it){
-    //         map<string, set<Product*>>::iterator it2 = keywords_.find(*it);
-
-    //         if(it2 != keywords_.end()){
-    //             temp = setIntersection(temp, it2->second);
-    //         }
-    //     }
-    // }
-
+    //put everything into a vector
+    for(set<Product*>::iterator it = temp.begin(); it != temp.end(); ++it){
+        result.push_back(*it);
+    }
 
     return result;
 }
