@@ -19,7 +19,7 @@ std::set<std::string> parseStringToWords(string rawWords)
     std::set<std::string> words;
     string word = "";
     //iterate through all the characters
-    for(int i = 0; i < rawWords.size(); ++i){
+    for(uint32_t i = 0; i < rawWords.size(); ++i){
         char character = rawWords.at(i);
         //check if the charater is a space, period, or single quote
         if(character == ' ' || character == '.' || character == '\''){

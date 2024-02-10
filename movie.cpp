@@ -9,6 +9,10 @@ Movie::Movie(const string category, const string name, double price, int qty,
                 rating_ = rating;
 }
 
+Movie::~Movie(){
+    
+}
+
 string Movie::displayString() const{
     string str = name_ + '\n' + "Genre: " + genre_ + " Rating: " + rating_ + '\n' + to_string(price_) + ' ' + to_string(qty_) + " left.";
     return str;

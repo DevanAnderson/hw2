@@ -15,14 +15,15 @@ class MyDataStore : public DataStore{
         std::vector<Product*> search(std::vector<std::string>& terms, int type);
         virtual void dump(std::ostream& ofile);
 
-        void addToCart(User* u, Product* p);
-        void viewCart(User* u);
-        void checkout(User* u);
+        void addToCart(std::string u, Product* p);
+        void viewCart(std::string u);
+        void checkout(std::string u);
     private:
-        std::set<User*> users_;
+        std::set<std::string> users_;
         std::set<Product*> products_;
+        std::map<std::string, User*> userMap_;
         std::map<User*, std::vector<Product*>> cart_;
-        std::map<std::string, set<Product*>> keywords_;
+        std::map<std::string, std::set<Product*>> keywords_;
 };
 
 #endif

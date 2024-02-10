@@ -8,6 +8,10 @@ Book::Book(const string category, const string name, double price, int qty,
                 author_ = author;
 }
 
+Book::~Book(){
+    
+}
+
 string Book::displayString() const{
     string str = name_ + '\n' + "Author: " + author_ + " ISBN: " + isbn_ + '\n' + to_string(price_) + ' ' + to_string(qty_) + " left.";
     return str;

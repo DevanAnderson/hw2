@@ -26,11 +26,11 @@ template <typename T>
 std::set<T> setUnion(std::set<T>& s1, std::set<T>& s2)
 {
     std::set<T> unions;
-    for(typename std::set<T>::iterator it = s1.begin(); it != s1.end; ++it){
+    for(typename std::set<T>::iterator it = s1.begin(); it != s1.end(); ++it){
         unions.insert(*it);
     }
 
-    for(typename std::set<T>::iterator it = s2.begin(); it != s2.end; ++it){
+    for(typename std::set<T>::iterator it = s2.begin(); it != s2.end(); ++it){
         unions.insert(*it);
     }
 

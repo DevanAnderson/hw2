@@ -101,7 +101,27 @@ int main(int argc, char* argv[])
                 done = true;
             }
 	    /* Add support for other commands here */
-
+            else if(cmd == "ADD"){
+                string username;
+                unsigned int hit_num;
+                ss >> username >> hit_num;
+                if(hit_num < 1 || hit_num > hits.size()){
+                    cout << "Invalid input";
+                }
+                else{
+                    ds.addToCart(username, hits.at(hit_num - 1));
+                }
+            }
+            else if(cmd == "VIEWCART"){
+                string username;
+                ss >> username;
+                ds.viewCart(username);
+            }
+            else if(cmd == "BUYCART"){
+                string username;
+                ss >> username;
+                ds.checkout(username);
+            }
 
 
 

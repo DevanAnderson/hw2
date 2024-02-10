@@ -8,6 +8,10 @@ Clothing::Clothing(const string category, const string name, double price, int q
                 brand_ = brand;
 }
 
+Clothing::~Clothing(){
+    
+}
+
 string Clothing::displayString() const{
     string str = name_ + '\n' + "Size: " + size_ + " Brand: " + brand_ + '\n' + to_string(price_) + ' ' + to_string(qty_) + " left.";
     return str;
