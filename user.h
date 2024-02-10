@@ -2,6 +2,7 @@
 #define USER_H
 #include <iostream>
 #include <string>
+#include <iomanip>
 
 /**
  * Implements User functionality and information storage

@@ -1,5 +1,5 @@
 #include "movie.h"
-
+#include <iomanip>
 
 using namespace std;
 
@@ -14,7 +14,9 @@ Movie::~Movie(){
 }
 
 string Movie::displayString() const{
-    string str = name_ + '\n' + "Genre: " + genre_ + " Rating: " + rating_ + '\n' + to_string(price_) + ' ' + to_string(qty_) + " left.";
+    stringstream s;
+    s << name_ << '\n' << "Genre: " << genre_ << " Rating: " << rating_ << '\n' << fixed << setprecision(2) << price_ << ' ' << qty_ << " left.";
+    string str = s.str();
     return str;
 }
 

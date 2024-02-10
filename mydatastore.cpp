@@ -69,7 +69,6 @@ vector<Product*> MyDataStore::search(vector<string>& terms, int type) {
     else{
         for(vector<string>::iterator it = terms.begin(); it != terms.end(); ++it){
             map<string, set<Product*>>::iterator it2 = keywords_.find(*it);
-            cout << *it << ' ';
             if(it2 != keywords_.end()){
                 temp2 = it2->second;
                 temp = setIntersection(temp, temp2);
@@ -122,11 +121,11 @@ void MyDataStore::viewCart(string u){
 
     //make sure there is a cart
     if(it != cart_.end()){
-        cout << it->first->getName() << "\'s cart:" << endl;
+        //cout << it->first->getName() << "\'s cart:" << endl;
         //iterator through the products user has in the cart
         for(vector<Product*>::iterator it2 = it->second.begin(); it2 != it->second.end(); ++it2){
             //display the products information
-            cout << ++i << ": " << endl;
+            cout <<"Item " << ++i << endl;
             cout << (*it2)->displayString() << endl;
         }
     }
@@ -136,7 +135,7 @@ void MyDataStore::checkout(string u){
     //find the user
     map<string, User*>::iterator it = userMap_.find(convToLower(u));
     if(it == userMap_.end()){
-        cout << "Invalid input" << endl;
+        cout << "Invalid username" << endl;
         return;
     }
 
@@ -164,7 +163,7 @@ void MyDataStore::checkout(string u){
 
 void MyDataStore::dump(ostream& ofile) {
     //dump the products
-    ofile << "<products\n";
+    ofile << "<products>\n";
     //iterate through the products
     for(set<Product*>::iterator it = products_.begin(); it != products_.end(); ++it){
         (*it)->dump(ofile);

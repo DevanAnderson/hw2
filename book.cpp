@@ -1,4 +1,5 @@
 #include "book.h"
+#include <iomanip>
 
 using namespace std;
 
@@ -13,7 +14,9 @@ Book::~Book(){
 }
 
 string Book::displayString() const{
-    string str = name_ + '\n' + "Author: " + author_ + " ISBN: " + isbn_ + '\n' + to_string(price_) + ' ' + to_string(qty_) + " left.";
+    stringstream s;
+    s << name_ << '\n' << "Author: " << author_ << " ISBN: " << isbn_ << '\n' << fixed << setprecision(2) << price_ << ' ' << qty_ << " left.";
+    string str = s.str();
     return str;
 }
 
